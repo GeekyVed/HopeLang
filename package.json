@@ -1,0 +1,22 @@
+{
+  "name": "hopelang",
+  "version": "0.0.1",
+  "description": "An NPM Package",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeekyVed/HopeLang.git"
+  },
+  "keywords": [
+    "npm"
+  ],
+  "author": "Vedant Singh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GeekyVed/HopeLang/issues"
+  },
+  "homepage": "https://github.com/GeekyVed/HopeLang#readme"
+}
