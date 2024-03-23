@@ -7,7 +7,9 @@ import {
     Identifier,
     NumericLiteral,
     Program,
+    VarDeclaration,
     Stmt,
+    AssignmentExpr
 } from "./ast.ts";
 
 import { Token, tokenize, TokenType } from "./lexer.ts";
@@ -35,7 +37,6 @@ export default class Parser {
             console.error("Parser Error:\n", err, prev, " - Expecting: ", type);
             Deno.exit(1);
         }
-
         return prev;
     }
 
@@ -57,12 +58,78 @@ export default class Parser {
     // Handle statement types
     private parse_stmt(): Stmt {
         // skip to parse_expr
-        return this.parse_expr();
+        switch (this.at().type) {
+            case TokenType.Let:
+            case TokenType.Const:
+                return this.parse_var_declaration();
+
+            default:
+                return this.parse_expr();
+        }
+    }
+
+    // LET IDENT;
+    // ( LET | CONST ) IDENT = EXPR;
+    parse_var_declaration(): Stmt {
+        const isConstant = this.eat().type == TokenType.Const;
+        const identifier = this.expect(
+            TokenType.Identifier,
+            "Expected identifier name following let | const keywords.",
+        ).value;
+
+        if (this.at().type == TokenType.SemiColon) {
+            this.eat(); // expect semicolon
+            if (isConstant) {
+                throw "Must assigne value to constant expression. No value provided.";
+            }
+
+            return {
+                kind: "VarDeclaration",
+                identifier,
+                constant: false,
+            } as VarDeclaration;
+        }
+
+        this.expect(
+            TokenType.Equals,
+            "Expected equals token following identifier in var declaration.",
+        );
+
+        const declaration = {
+            kind: "VarDeclaration",
+            value: this.parse_expr(),
+            identifier,
+            constant: isConstant,
+        } as VarDeclaration;
+
+        this.expect(
+            TokenType.SemiColon,
+            "Variable declaration statment must end with semicolon.",
+        );
+
+        return declaration;
     }
 
     // Handle expressions
     private parse_expr(): Expr {
-        return this.parse_additive_expr();
+        return this.parse_assignment_expr();
+    }
+
+    parse_assignment_expr(): Expr {
+        const left = this.parse_additive_expr(); // switch this out with objectExpr
+
+        if (this.at().type == TokenType.Equals) {
+            this.eat(); // advance past equals
+            const value = this.parse_assignment_expr(); //Allow assignment chaining a = b = c
+            return { value, assigne: left, kind: "AssignmentExpr" } as AssignmentExpr;
+        }
+
+        // To Check semicolon at end of assignment exp :)
+        // if (this.at().type != TokenType.SemiColon) {
+        //     throw "Expected semicolon at the end of assignment expression.";
+        // }
+
+        return left;
     }
 
     // Handle Addition & Subtraction Operations
