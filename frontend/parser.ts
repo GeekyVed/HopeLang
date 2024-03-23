@@ -138,12 +138,12 @@ export default class Parser {
 
 
 
-// We call the parse_..._ functions inside one another this acually is to define a precedence 
-// Among different components 
+// We call the parse_..._ functions inside one another this acually is to define a precedence
+// Among different components
 
 // the component with highest priority is actually called at last
 
-// Order of Precendence 
+// Order of Precendence
 // AssigmentExpr
 // MemberExpr
 // FunctionCall

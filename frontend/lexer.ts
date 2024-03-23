@@ -81,7 +81,7 @@ export function tokenize(sourceCode: string): Token[] {
                 //Reserved Keywords
 				const reserved = KEYWORDS[ident];
 				// If value is not undefined then the identifier is reconized keyword
-				if (reserved) {
+				if (typeof reserved == "number") {
 					tokens.push(token(ident, reserved));
 				} else {
 					// Unreconized name must mean user defined symbol.
