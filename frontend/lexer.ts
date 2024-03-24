@@ -12,6 +12,7 @@ export enum TokenType {
 	Comma,
 	Colon,
 	Dot,
+	Fn,
 	//
 	Equals,
 	OpenParen,
@@ -38,7 +39,7 @@ function token(value = "", type: TokenType): Token {
 const KEYWORDS: Record<string, TokenType> = {
 	let: TokenType.Let,
 	const: TokenType.Const,
-
+	fn: TokenType.Fn,
 };
 
 //Checking Alphabet=> symbol.lC is same as Uc

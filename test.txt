@@ -1,7 +1,1 @@
-let foo = 5 * 2;
-foo = foo / 4 + 5
-
-print(foo, 45)
-
-const timeNow = time();
-print(timeNow)
+print(14)

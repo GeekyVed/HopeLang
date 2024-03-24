@@ -4,6 +4,7 @@ export type NodeType =
     //Statements
     | "Program"
     | "VarDeclaration"
+    | "FunctionDeclaration"
     //Expressions
     | "AssignmentExpr"
     | "NumericLiteral"
@@ -57,6 +58,15 @@ export interface CallExpr extends Expr {
     kind: "CallExpr";
     args: Expr[];
     calle: Expr; //what if foo.bar()
+}
+
+export interface FunctionDeclaration extends Stmt {
+	kind: "FunctionDeclaration";
+	parameters: string[];
+	name: string;
+	body: Stmt[];
+    //async :
+    //arrow : 
 }
 
 export interface AssignmentExpr extends Expr {

@@ -13,7 +13,8 @@ import {
     ObjectLiteral,
     CallExpr,
     MemberExpr,
-    AssignmentExpr
+    AssignmentExpr,
+    FunctionDeclaration
 } from "./ast.ts";
 
 import { Token, tokenize, TokenType } from "./lexer.ts";
@@ -66,6 +67,8 @@ export default class Parser {
             case TokenType.Let:
             case TokenType.Const:
                 return this.parse_var_declaration();
+            case TokenType.Fn:
+                return this.parse_fn_declaration();
 
             default:
                 return this.parse_expr();
@@ -118,6 +121,52 @@ export default class Parser {
     private parse_expr(): Expr {
         return this.parse_assignment_expr();
     }
+
+    parse_fn_declaration(): Stmt {
+		this.eat(); // eat fn keyword
+		const name = this.expect(
+			TokenType.Identifier,
+			"Expected function name following fn keyword"
+		).value;
+
+		const args = this.parse_args();
+		const params: string[] = []; //Double Check its a String
+		for (const arg of args) {
+			if (arg.kind !== "Identifier") {
+				console.log(arg);
+				throw "Inside function declaration expected parameters to be of type string.";
+			}
+
+			params.push((arg as Identifier).symbol);
+		}
+
+		this.expect(
+			TokenType.OpenBrace,
+			"Expected function body following declaration"
+		);
+		const body: Stmt[] = [];
+
+		while (
+			this.at().type !== TokenType.EOF &&
+			this.at().type !== TokenType.CloseBrace
+		) {
+			body.push(this.parse_stmt());
+		}
+
+		this.expect(
+			TokenType.CloseBrace,
+			"Closing brace expected inside function declaration"
+		);
+
+		const fn = {
+			body,
+			name,
+			parameters: params,
+			kind: "FunctionDeclaration",
+		} as FunctionDeclaration;
+
+		return fn;
+	}
 
     private parse_assignment_expr(): Expr {
         const left = this.parse_object_expr(); // switch this out with objectExpr
