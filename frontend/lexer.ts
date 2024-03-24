@@ -9,10 +9,17 @@ export enum TokenType {
 	Let,
 	Const,
 	SemiColon,
+	Comma,
+	Colon,
+	Dot,
 	//
 	Equals,
 	OpenParen,
 	CloseParen,
+	OpenBrace,
+	CloseBrace,
+	OpenBracket,
+	CloseBracket,
 	BinaryOperator,
 	EOF
 };
@@ -40,7 +47,7 @@ function isalpha(src: string) {
 }
 
 function isskippable(str: string) {
-	return str == " " || str == "\n" || str == "\t";
+	return str == " " || str == "\n" || str == "\t" || str == "\r";
 }
 
 //Comparing unicodes
@@ -61,6 +68,18 @@ export function tokenize(sourceCode: string): Token[] {
 		} else if (src[0] == ")") {
 			tokens.push(token(src.shift(), TokenType.CloseParen));
 		}
+		else if (src[0] == "}") {
+			tokens.push(token(src.shift(), TokenType.CloseBrace));
+		}
+		else if (src[0] == "]") {
+			tokens.push(token(src.shift(), TokenType.CloseBracket));
+		}
+		else if (src[0] == "[") {
+			tokens.push(token(src.shift(), TokenType.OpenBracket));
+		}
+		else if (src[0] == "{") {
+			tokens.push(token(src.shift(), TokenType.OpenBrace));
+		}
 		else if (src[0] == "+" || src[0] == "-" || src[0] == "*" || src[0] == "/" || src[0] == "%") {
 			tokens.push(token(src.shift(), TokenType.BinaryOperator));
 		}
@@ -69,6 +88,15 @@ export function tokenize(sourceCode: string): Token[] {
 		}
 		else if (src[0] == ";") {
 			tokens.push(token(src.shift(), TokenType.SemiColon));
+		}
+		else if (src[0] == ":") {
+			tokens.push(token(src.shift(), TokenType.Colon));
+		}
+		else if (src[0] == ",") {
+			tokens.push(token(src.shift(), TokenType.Comma));
+		}
+		else if (src[0] == ".") {
+			tokens.push(token(src.shift(), TokenType.Dot));
 		}
 		// HANDLE MULTICHARACTER KEYWORDS, TOKENS, IDENTIFIERS ETC...
 		else {

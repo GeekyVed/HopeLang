@@ -1,6 +1,6 @@
-import { BinaryExpr, Identifier, AssignmentExpr } from "../../frontend/ast.ts";
+import { BinaryExpr, Identifier, AssignmentExpr, ObjectLiteral, CallExpr } from "../../frontend/ast.ts";
 import Environment from "../environment.ts";
-import { MK_NULL, NumberVal, RuntimeVal } from "../values.ts";
+import { MK_NULL, NumberVal, RuntimeVal, ObjectVal, NativeFnValue } from "../values.ts";
 import { evaluate } from "../interpreter.ts";
 
 export function eval_binary_expr(binop: BinaryExpr, env: Environment): RuntimeVal {
@@ -57,4 +57,33 @@ export function eval_assignment(
 
     const varname = (node.assigne as Identifier).symbol;
     return env.assignVar(varname, evaluate(node.value, env));
+}
+
+
+export function eval_object_expr(
+    obj: ObjectLiteral,
+    env: Environment,
+): RuntimeVal {
+    const object = { type: "object", properties: new Map() } as ObjectVal;
+    for (const { key, value } of obj.properties) {
+        const runtimeVal = (value == undefined)
+            ? env.lookupVar(key)
+            : evaluate(value, env);
+
+        object.properties.set(key, runtimeVal);
+    }
+
+    return object;
+}
+
+export function eval_call_expr(expr: CallExpr, env: Environment): RuntimeVal {
+    const args = expr.args.map((arg) => evaluate(arg, env));
+    const fn = evaluate(expr.calle, env);
+
+    if (fn.type !== "native-fn") {
+        throw "Cannot call value that is not a function: " + JSON.stringify(fn);
+    }
+
+    const result = (fn as NativeFnValue).call(args, env);
+    return result;
 }

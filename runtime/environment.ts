@@ -1,4 +1,20 @@
-import { RuntimeVal } from "./values.ts";
+import { MK_BOOL, MK_NULL, RuntimeVal, MK_NATIVE_FN, MK_NUMBER } from "./values.ts";
+import { timeFunction, printFunction } from "../native-fns/native-fx.ts"; 
+
+export function createGlobalEnv() {
+    const env = new Environment();
+    // Create Default Global Enviornment
+    env.declareVar("true", MK_BOOL(true), true);
+    env.declareVar("false", MK_BOOL(false), true);
+    env.declareVar("null", MK_NULL(), true);
+
+    // Define a native builtin method
+    env.declareVar("print", MK_NATIVE_FN(printFunction), true);
+    env.declareVar("time", MK_NATIVE_FN(timeFunction), true);
+
+
+    return env;
+}
 
 // structure for scope AKA envionment
 export default class Environment {
@@ -8,6 +24,7 @@ export default class Environment {
 
 
     constructor(parentENV?: Environment) {
+        const global = parentENV ? true : false;
         this.parent = parentENV;
         this.variables = new Map();
         this.constants = new Set();
