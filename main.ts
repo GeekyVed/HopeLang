@@ -5,9 +5,9 @@ import { MK_NULL, MK_NUMBER, MK_BOOL } from "./runtime/values.ts";
 import { createGlobalEnv } from "./runtime/environment.ts";
 
 //repl();
-run("./test.txt");
+// run("./bb.hl");
 
-async function run(filename: string) {
+export async function run(filename: string) {
     const parser = new Parser();
     const env = createGlobalEnv();
 
@@ -18,7 +18,7 @@ async function run(filename: string) {
     console.log(result);
 }
 
-function repl() {
+export function repl() {
     const parser = new Parser();
 
     //Making an environment and a set of default variables

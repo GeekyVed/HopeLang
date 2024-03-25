@@ -1,8 +1,11 @@
 {
   "name": "hopelang",
-  "version": "0.0.1",
-  "description": "An NPM Package",
-  "main": "index.js",
+  "version": "1.0.0",
+  "description": "HopeLang is a programming language designed for simplicity and ease of learning. Built on TypeScript, it offers a smooth transition for developers familiar with TypeScript syntax. Dive into HopeLang to explore its intuitive constructs and enhance your programming skills.",
+  "main": "index.ts",
+  "bin": {
+    "hope": "./index.ts"
+  },
   "scripts": {
     "test": "npm run test"
   },
@@ -18,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/GeekyVed/HopeLang/issues"
   },
-  "homepage": "https://github.com/GeekyVed/HopeLang#readme"
+  "homepage": "https://github.com/GeekyVed/HopeLang#readme",
+  "peerDependencies": {
+    "deno": "^1.19.0"
+  }
 }
