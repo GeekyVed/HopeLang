@@ -1,9 +1,6 @@
 # <div align="center">HopeLang</div>
 
-<img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white"/>	
-<img alt="Deno" src="https://img.shields.io/badge/Deno-000000?style=for-the-badge&logo=Deno&logoColor=white"/>	
-<img alt="npm" src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white"/>	
-<img alt="GitHub" src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>
+<img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white"/>	<img alt="Deno" src="https://img.shields.io/badge/Deno-000000?style=for-the-badge&logo=Deno&logoColor=white"/>	<img alt="npm" src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white"/>	<img alt="GitHub" src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>
 
 
 **HopeLang** is a programming language designed for simplicity and ease of learning. Built on TypeScript, it offers a smooth transition for developers familiar with TypeScript syntax. Dive into HopeLang to explore its intuitive constructs and enhance your programming skills.
