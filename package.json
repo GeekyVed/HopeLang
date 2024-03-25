@@ -21,8 +21,6 @@
   "bugs": {
     "url": "https://github.com/GeekyVed/HopeLang/issues"
   },
-  "homepage": "https://github.com/GeekyVed/HopeLang#readme",
-  "peerDependencies": {
-    "deno": "^1.19.0"
-  }
+  "homepage": "https://github.com/GeekyVed/HopeLang#readme"
+  
 }

@@ -33,6 +33,29 @@ HopeLang was originally created as a personal project to gain a deeper understan
 
 To use HopeLang, you can install it via npm or directly from GitHub. First, make sure you have Deno installed on your system. You can install Deno by following the instructions [here](https://deno.land/#installation).
 
+## <div align="center">Install Deno</div>
+
+### Windows:
+To install Deno on Windows, open PowerShell and run the following command:
+```powershell
+irm https://deno.land/install.ps1 | iex
+```
+
+### macOS:
+To install Deno on macOS, open Terminal and run the following command:
+
+```bash
+curl -fsSL https://deno.land/install.sh | sh
+```
+
+### Linux:
+To install Deno on Linux, open Terminal and run the following command:
+
+```bash
+curl -fsSL https://deno.land/install.sh | sh
+```
+
+
 ## <div align="center">Via npm</div>
 
 You can install HopeLang via npm using the following command:
