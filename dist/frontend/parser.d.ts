@@ -1,0 +1,31 @@
+import { Program } from "./ast";
+export default class Parser {
+    private tokens;
+    private not_eof;
+    private at;
+    private eat;
+    private expect;
+    produceAST(sourceCode: string): Program;
+    private parse_stmt;
+    private parse_parse_statement_dispatch;
+    private parse_fn_declaration;
+    private parse_if_statement;
+    private parse_while_statement;
+    private parse_print_statement;
+    private parse_import_statement;
+    private parse_return_stmt;
+    private parse_var_declaration;
+    private parse_expr;
+    private parse_assignment_expr;
+    private parse_object_expr;
+    private parse_equality_expr;
+    private parse_relational_expr;
+    private parse_additive_expr;
+    private parse_multiplicative_expr;
+    private parse_call_member_expr;
+    private parse_call_expr;
+    private parse_args;
+    private parse_arguments_list;
+    private parse_member_expr;
+    private parse_primary_expr;
+}

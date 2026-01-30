@@ -1,26 +1,25 @@
 {
   "name": "hopelang",
-  "version": "1.0.0",
-  "description": "HopeLang is a programming language designed for simplicity and ease of learning. Built on TypeScript, it offers a smooth transition for developers familiar with TypeScript syntax. Dive into HopeLang to explore its intuitive constructs and enhance your programming skills.",
-  "main": "index.ts",
-  "bin": {
-    "hope": "./index.ts"
-  },
+  "version": "2.0.0",
+  "description": "A kid-friendly programming language designed for simplicity.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "npm run test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GeekyVed/HopeLang.git"
+    "build": "tsc",
+    "test": "vitest run",
+    "start": "ts-node src/main.ts"
   },
   "keywords": [
-    "npm"
+    "programming-language",
+    "education",
+    "interpreter"
   ],
   "author": "Vedant Singh",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/GeekyVed/HopeLang/issues"
-  },
-  "homepage": "https://github.com/GeekyVed/HopeLang#readme"
-  
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "vitest": "^0.30.0",
+    "ts-node": "^10.9.1",
+    "@types/node": "^20.0.0"
+  }
 }

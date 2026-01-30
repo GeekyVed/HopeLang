@@ -1,0 +1,49 @@
+
+# HopeLang Verification Script
+# This scripts tests Variables, Control Flow, and Functions.
+
+print "Starting Verification..."
+
+# 1. Variables and Math (No 'let'!)
+x = 10
+y = 20
+sum = x + y
+print "Sum of 10 + 20 is:", sum
+
+if sum == 30
+    print "Math Check: PASSED"
+else
+    print "Math Check: FAILED"
+end
+
+# 2. Loops
+print "Counting to 5..."
+i = 0
+while i < 5
+    print "Count:", i
+    i = i + 1
+end
+
+# 3. Functions (Recursive Fibonacci)
+fn fib(n)
+    if n == 0
+        return 0
+    end
+    if n == 1
+        return 1
+    end
+    
+    return fib(n - 1) + fib(n - 2)
+end
+
+print "Calculating Fib(10)..."
+result = fib(10)
+print "Result:", result
+
+if result == 55
+    print "Fibonacci Check: PASSED"
+else
+    print "Fibonacci Check: FAILED"
+end
+
+print "Verification Complete!"

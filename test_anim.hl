@@ -1,0 +1,11 @@
+
+# Animation Test Script
+import "animation"
+
+print "Starting Animation Test..."
+
+move(10)
+turn(90)
+move(20)
+
+print "Animation Test Complete!"
