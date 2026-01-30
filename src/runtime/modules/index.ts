@@ -1,6 +1,6 @@
 
 import { RuntimeVal } from "../values";
-import { setupAnimationModule } from "./animation";
+import { setupBlocodeModule } from "./blocode";
 import Environment from "../environment";
 
 export type ModuleLoader = (env: Environment) => void;
@@ -8,4 +8,4 @@ export type ModuleLoader = (env: Environment) => void;
 export const nativeModules: Map<string, ModuleLoader> = new Map();
 
 // Register Modules
-nativeModules.set("animation", setupAnimationModule);
+nativeModules.set("blocode", setupBlocodeModule);

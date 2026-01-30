@@ -67,7 +67,15 @@ function eval_assignment(node, env) {
         throw `Invalid LHS inside assignment expr ${JSON.stringify(node.assigne)}`;
     }
     const varname = node.assigne.symbol;
-    return env.assignVar(varname, evaluate(node.value, env));
+    const value = evaluate(node.value, env);
+    try {
+        // Try to assign to existing variable (in any scope)
+        return env.assignVar(varname, value);
+    }
+    catch (e) {
+        // If it doesn't exist, declare it in the current scope
+        return env.declareVar(varname, value, false);
+    }
 }
 function eval_object_expr(obj, env) {
     return { type: "object", properties: new Map() }; // Simplified for now

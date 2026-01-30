@@ -36,8 +36,8 @@ var TokenType;
     TokenType[TokenType["EOF"] = 23] = "EOF";
 })(TokenType || (exports.TokenType = TokenType = {}));
 const KEYWORDS = {
-    "let": TokenType.Let,
-    "var": TokenType.Let,
+    // "let": TokenType.Let, 
+    // "var": TokenType.Let,
     "fn": TokenType.Fn,
     "if": TokenType.If,
     "else": TokenType.Else,
